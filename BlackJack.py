@@ -154,7 +154,7 @@ def game():  # main method
     deck, dealer_hand, dealer_score = dealer_control(deck, dealer_hand, user_hand, user_score)  # dealer starts to play
     win_conditions(user_score, dealer_score)  # end game results
     while True:  # quit or continue menu
-        quit_game = input("Do you want to star another game? Yes/No.\n").lower()
+        quit_game = input("Do you want to start another game? Yes/No.\n").lower()
         if quit_game == 'yes':
             game()
         elif quit_game == 'no':
