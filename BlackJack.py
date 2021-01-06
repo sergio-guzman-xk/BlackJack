@@ -33,6 +33,7 @@ def add_cart(deck: list, hand: list):  # adds a cart to a hand and removes the c
 
 def turn_handler(deck: list, hand: list, dealer_hand: list):  # the logic behind each turn.
     score, lose = check_score(hand)  # checks the score to see if the player has lost
+    time.sleep(2)
     if lose:
         draw_game(hand, dealer_hand, True)
         return deck, hand, score
