@@ -64,12 +64,21 @@ def dealer_control(deck, hand, user_hand, user_score):  # logic for the machine 
             deck, hand = add_cart(deck, hand)
             draw_game(user_hand, hand, True)
             return dealer_control(deck, hand, user_hand, user_score)
+        elif user_score > 21:
+            print("Dealer will pass.")
+            draw_game(user_hand, hand, True)
+            return deck, hand, score
         elif user_score > score:
             print("Dealer will take a card.")
             deck, hand = add_cart(deck, hand)
             draw_game(user_hand, hand, True)
             return dealer_control(deck, hand, user_hand, user_score)
-        elif user_score == score:
+        elif user_score == score and score <= 11:
+            print("Dealer will take a card.")
+            deck, hand = add_cart(deck, hand)
+            draw_game(user_hand, hand, True)
+            return dealer_control(deck, hand, user_hand, user_score)
+        elif user_score == score and score > 11:
             draw_game(user_hand, hand, True)
             return deck, hand, score
         else:
@@ -144,7 +153,7 @@ def draw_game(user_hand, dealer_hand, dealer_turn=False):  # draws the game
 def game():  # main method
     os.system('cls')
     print(art.logo)
-    time.sleep(2)
+    time.sleep(1)
     deck = deck_create()  # the deck for this game is created
     user_hand = start_hand(deck)  # the initial hand for the user is created
     dealer_hand = start_hand(deck)  # the initial hand for the dealer is created.
@@ -160,7 +169,7 @@ def game():  # main method
             game()
         elif quit_game == 'no':
             print("Good Bye!!!")
-            time.sleep(2)
+            time.sleep(1)
             sys.exit(0)
         else:
             print("ERROR: Wrong input. Please use 'Yes' or 'No'.")
